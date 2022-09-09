@@ -10,6 +10,11 @@ sudo apt-get install python3-dev cmake clang libboost-all-dev
 
 ## Fetch deps
 
+Fetch and build the latest jsonata as a single file minimized js file, fetch pybind11 and duktape too.
+
+```sh
+python3 update_deps.py
+```
 
 ## Build the library
 ```sh
