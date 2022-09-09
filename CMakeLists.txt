@@ -1,0 +1,6 @@
+project(jsonata)
+cmake_minimum_required(VERSION 3.22)
+add_subdirectory(pybind11)
+find_package(Python COMPONENTS Interpreter Development)
+find_package(pybind11 CONFIG)
+pybind11_add_module(jsonata wrapper.cpp)
