@@ -14,6 +14,7 @@ Fetch and build the latest jsonata as a single file minimized js file, fetch pyb
 
 ```sh
 python3 update_deps.py
+python3 js2c.py
 ```
 
 ## Build the library
