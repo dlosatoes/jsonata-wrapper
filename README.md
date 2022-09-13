@@ -1,35 +1,23 @@
 # JSONata-Wrapper
 
-This code doesn't do anything yet, come back later.
+A really simple wrapper for the [JSONata](https://github.com/jsonata-js/jsonata) javascript library. 
+This library is loosely based on the [pyjsonata](https://github.com/qlyoung/pyjsonata) bindings. 
 
+## install
 
-## Set up envinronment
-```sh
-sudo apt-get install python3-dev cmake clang libboost-all-dev
+```bash
+python3 -m pip install jsonata
 ```
 
-## Fetch deps
-
-Fetch and build the latest jsonata as a single file minimized js file, fetch pybind11 and duktape too.
-
-```sh
-python3 update_deps.py
-python3 js2c.py
-```
-
-## Build the library
-```sh
-mkdir build
-cd build
-cmake ..
-make
-```
-
-## Test the library
+## usage
 
 ```python
 import jsonata
-print(jsonata.transform('$.foo','{ "foo": 42 }'))
-```
 
-The result should be '42'
+jncontext = jsonata.Context()
+
+try:
+    result = jncontext("[$.foo, $.bar[2]]", { "foo": "hi there", "bar": [1,2,3,5,8,13]})
+except ValueError as exp:
+    ...
+```

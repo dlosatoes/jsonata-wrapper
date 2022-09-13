@@ -3,3 +3,5 @@ duktape-2.7.0
 jsonata-es5.min.js
 pybind11
 jsonata-es5.h
+dist
+jsonata.egg-info

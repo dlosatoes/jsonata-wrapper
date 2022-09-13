@@ -1,0 +1,8 @@
+include jsonata-es5.h
+include wrapper.cpp
+include README.md
+include setup.py
+include duktape-2.7.0/src/duktape.c
+include duktape-2.7.0/src/duktape.h
+include duktape-2.7.0/src/duk_config.h
+jsonata/__init__.py
