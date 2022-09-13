@@ -21,3 +21,11 @@ try:
 except ValueError as exp:
     ...
 ```
+
+## hack for usage with larger integers
+By using this hack, the input JSON is patched so that all integers bigger than the JavaScript MAX\_SAFE\_INTEGER
+are converted to strings before invocating JSONata, and are converted back to integers in the result.
+
+```python
+jncontext = jsonata.Context(bigint\_patch=True)
+```

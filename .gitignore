@@ -5,3 +5,4 @@ pybind11
 jsonata-es5.h
 dist
 jsonata.egg-info
+jsonata/__pycache__

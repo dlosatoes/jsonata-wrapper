@@ -3,7 +3,7 @@ from pybind11 import get_cmake_dir, get_include
 from pybind11.setup_helpers import Pybind11Extension, build_ext
 from setuptools import setup, find_packages
 
-__version__ = "0.2.0"
+__version__ = "0.2.2"
 
 ext_modules = [
     Pybind11Extension("_jsonata",
@@ -20,9 +20,10 @@ setup(
     version=__version__,
     author="Rob J Meijer",
     license='BSD',
+    readme = "README.md",
     author_email="pibara@gmail.com",
     url="https://github.com/pibara/jsonata-wrapper",
-    description="A simple Python wrapper for the JavaScript Jsonata lib.",
+    description="A simple Python wrapper for the JavaScript JSONata lib.",
     classifiers=[
         'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
