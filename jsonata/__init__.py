@@ -38,11 +38,16 @@ def bigint_unescape(data):
 class Context:
     # pylint: disable=too-few-public-methods
     """Reusable JSONata context for more efficient repeated transforms"""
-    def __init__(self, bigint_patch=False):
+    def __init__(self, bigint_patch=False, debug_print=False):
         self._llcontext = _llContext()
         self.bigint_patch = bigint_patch
+        self.debug_print = debug_print
     def __call__(self, xform, data):
         """Do the actual transform"""
+        if self.debug_print:
+            print("JSONATA: bigint_patch:", self.bigint_patch)
+            print("JSONATA: xform:", xform)
+            print("JSONATA: data:", _json.dumps(data))
         if self.bigint_patch:
             return bigint_unescape(
                     _json.loads(

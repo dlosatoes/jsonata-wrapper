@@ -3,7 +3,7 @@ from pybind11 import get_cmake_dir, get_include
 from pybind11.setup_helpers import Pybind11Extension, build_ext
 from setuptools import setup, find_packages
 
-__version__ = "0.2.3"
+__version__ = "0.2.4"
 
 ext_modules = [
     Pybind11Extension("_jsonata",
