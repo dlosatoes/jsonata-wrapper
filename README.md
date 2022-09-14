@@ -27,5 +27,5 @@ By using this hack, the input JSON is patched so that all integers bigger than t
 are converted to strings before invocating JSONata, and are converted back to integers in the result.
 
 ```python
-jncontext = jsonata.Context(bigint\_patch=True)
+jncontext = jsonata.Context(bigint_patch=True)
 ```
