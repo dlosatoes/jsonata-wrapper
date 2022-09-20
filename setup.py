@@ -10,8 +10,7 @@ ext_modules = [
         ["wrapper.cpp", "duktape-2.7.0/src/duktape.c"],
         include_dirs=[get_include(), "duktape-2.7.0/src/"],
         define_macros = [('VERSION_INFO', __version__)],
-        language           = 'c++',
-        extra_compile_args = ['-std=c++14'],
+        language           = 'c++'
         ),
 ]
 
