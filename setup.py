@@ -7,7 +7,7 @@ __version__ = "0.2.4"
 
 ext_modules = [
     Pybind11Extension("_jsonata",
-        ["wrapper.cpp", "duktape-2.7.0/src/duktape.c"],
+        ["wrapper.cpp", "duktape.cpp"],
         include_dirs=[get_include(), "duktape-2.7.0/src/"],
         define_macros = [('VERSION_INFO', __version__)],
         language           = 'c++'
