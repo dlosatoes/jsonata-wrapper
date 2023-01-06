@@ -35,6 +35,24 @@ def bigint_unescape(data):
             rval = int(data.split(":")[1])
     return rval
 
+def _exec(_llfunc, xform, data):
+    return _json.loads(_llfunc(xform, _json.dumps(data)))
+
+def _exec_with_patch(_llfunc, xform, data, bigint_patch=False):
+    if bigint_patch:
+        return bigint_unescape(
+            _exec(
+                _llfunc, 
+                xform, 
+                bigint_escape(data)
+            )
+        )
+    return _exec(
+        _llfunc,
+        xform, 
+        data
+    )
+
 class Context:
     # pylint: disable=too-few-public-methods
     """Reusable JSONata context for more efficient repeated transforms"""
@@ -48,40 +66,19 @@ class Context:
             print("JSONATA: bigint_patch:", self.bigint_patch)
             print("JSONATA: xform:", xform)
             print("JSONATA: data:", _json.dumps(data))
-        if self.bigint_patch:
-            return bigint_unescape(
-                    _json.loads(
-                        self._llcontext(
-                            xform,
-                            _json.dumps(
-                                bigint_escape(data)
-                                )
-                            )
-                        )
-                    )
-        return _json.loads(
-                self._llcontext(
-                    xform,
-                    _json.dumps(data)
-                    )
-                )
+
+        return _exec_with_patch(
+            self._llcontext, 
+            xform, 
+            data, 
+            self.bigint_patch,
+        )
 
 def transform(xform, data, bigint_patch=False):
     """Convenience function for one-off JSONATA transforms"""
-    if bigint_patch:
-        return bigint_unescape(
-                _json.loads(
-                    _lltransform(
-                        xform, 
-                        _json.dumps(
-                            bigint_escape(data)
-                            )
-                        )
-                    )
-                )
-    return _json.loads(
-            _lltransform(
-                xform, 
-                _json.dumps(data)
-                )
-            )
+    return _exec_with_patch(
+        _lltransform,
+        xform,
+        data,
+        bigint_patch,
+    )
