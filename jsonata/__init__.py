@@ -36,7 +36,14 @@ def bigint_unescape(data):
     return rval
 
 def _exec(_llfunc, xform, data):
-    return _json.loads(_llfunc(xform, _json.dumps(data)))
+    res = _llfunc(xform, _json.dumps(data))
+    try:
+        return _json.loads(res)
+    except _json.decoder.JSONDecodeError as err:
+        if res == 'undefined':
+            raise KeyError('No value found at %s' % xform) from err
+        else:
+            raise err
 
 def _exec_with_patch(_llfunc, xform, data, bigint_patch=False):
     if bigint_patch:
