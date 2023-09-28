@@ -22,8 +22,11 @@ class DukContext {
     };
     std::string jsonata_call(std::string xform, std::string json_data) {
 	std::string command = std::string("JSON.stringify(jsonata('") + xform + std::string("').evaluate(") + json_data + std::string("));");
-        if (duk_peval_string(ctx, command.c_str()) != 0) {
-           throw std::invalid_argument("JSONATA command argument error");
+       
+        
+        if (duk_peval_string(ctx,command.c_str()) != 0) {
+            duk_to_object(ctx,-1);
+           throw pybind11::value_error(duk_json_encode(ctx,-1));//std::string("Error:") + 
 	}
 	return duk_safe_to_string(ctx, -1);
     }
@@ -35,6 +38,7 @@ std::string jsonata_wrapper_cpp(std::string xform, std::string json_data) {
 }
 
 PYBIND11_MODULE(_jsonata, m) {
+   
     m.doc() = "Python Wrapper for JDONata JavaScript library";
     m.def("transform", &jsonata_wrapper_cpp, "Apply JSONata transform to JSON data and returnt the result.",
           pybind11::arg("xform"), pybind11::arg("json_data"));
