@@ -3,6 +3,9 @@ import json as _json
 from _jsonata import Context as _llContext
 from _jsonata import transform as _lltransform
 
+class JsonataException(Exception):
+    pass
+
 def bigint_escape(data):
     """Escape big integers that JavaScript can't handle"""
     rval = data
@@ -59,12 +62,16 @@ class Context:
                             )
                         )
                     )
-        return _json.loads(
-                self._llcontext(
-                    xform,
-                    _json.dumps(data)
+        try:
+           return _json.loads(
+                    self._llcontext(
+                        xform,
+                        _json.dumps(data)
+                        )
                     )
-                )
+        except ValueError as e:
+            raise JsonataException(str(e))
+            
 
 def transform(xform, data, bigint_patch=False):
     """Convenience function for one-off JSONATA transforms"""
