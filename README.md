@@ -29,3 +29,13 @@ are converted to strings before invocating JSONata, and are converted back to in
 ```python
 jncontext = jsonata.Context(bigint_patch=True)
 ```
+
+## Currently pinned to JSONata 1.8.6
+
+Please note that due to [API changes](https://github.com/jsonata-js/jsonata/blob/master/CHANGELOG.md#200-major-release) and possible implementation changes, the python JSONata module is currently pinned to version 1.8.6 of JSONata. 
+
+In short, JSONata 2.0.0 broke things, adding an 'await' to the bindings didn't fix it, and I haven't have time to look into it any deeper so far.
+If anyone wants to have a go at fixing it, pull requests are highly welcome at this time. 
+
+
+
