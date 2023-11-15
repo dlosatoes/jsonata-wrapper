@@ -20,6 +20,7 @@ clonedir2 = "pybind11"
 cloneurl2 = "https://github.com/pybind/pybind11.git"
 try:
     rep = Repo.clone_from(cloneurl, clonedir)
+    rep.git.checkout('v1.8.6')
 except GitCommandError as exp:
     print("Problem cloning jsonata:")
     print(exp)
